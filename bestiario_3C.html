@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bestiario dei Nuovi Barbari – Classe 3C</title>
+<link href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=IM+Fell+English:ital@0;1&family=Uncial+Antiqua&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=IM+Fell+English:ital@0;1&family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background-color: #f5e6c8;
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 0%, #e8c97a 0%, transparent 70%),
+    radial-gradient(ellipse at 0% 100%, #c4793a22 0%, transparent 60%);
+  min-height: 100vh;
+  font-family: 'IM Fell English', serif;
+  color: #2a1a0a;
+  padding: 0 0 80px;
+}
+
+/* Bordo decorativo pergamena */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  border: 12px solid transparent;
+  border-image: repeating-linear-gradient(
+    45deg,
+    #8b4513 0px, #8b4513 4px,
+    #c4793a 4px, #c4793a 8px,
+    #8b4513 8px, #8b4513 12px
+  ) 12;
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* HERO */
+.hero {
+  text-align: center;
+  padding: 60px 24px 40px;
+  position: relative;
+}
+
+.hero-creature {
+  font-size: 80px;
+  display: block;
+  margin-bottom: 16px;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(4px 4px 0px rgba(139,69,19,0.3));
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.hero-ornament {
+  font-size: 28px;
+  color: #8b4513;
+  letter-spacing: 8px;
+  display: block;
+  margin-bottom: 16px;
+}
+
+.hero-title {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: clamp(28px, 6vw, 52px);
+  color: #5c1a00;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  text-shadow: 2px 2px 0px rgba(139,69,19,0.2);
+}
+
+.hero-sub {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: #7a3a10;
+  margin-bottom: 20px;
+}
+
+.class-scroll {
+  display: inline-block;
+  background: linear-gradient(135deg, #8b4513, #c4793a, #8b4513);
+  color: #fef3c7;
+  font-family: 'IM Fell English', serif;
+  font-size: 15px;
+  letter-spacing: 3px;
+  padding: 8px 32px;
+  clip-path: polygon(12px 0%, calc(100% - 12px) 0%, 100% 50%, calc(100% - 12px) 100%, 12px 100%, 0% 50%);
+  text-transform: uppercase;
+}
+
+.divider-rune {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 0 24px;
+}
+.divider-rune::before, .divider-rune::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #8b4513, transparent);
+}
+.divider-rune span {
+  font-size: 22px;
+  color: #8b4513;
+  white-space: nowrap;
+}
+
+/* INTRO */
+.intro-box {
+  max-width: 620px;
+  margin: 0 auto 40px;
+  padding: 24px 28px;
+  background: rgba(139,69,19,0.06);
+  border: 1px solid rgba(139,69,19,0.25);
+  border-radius: 2px;
+  position: relative;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #3d1a05;
+  text-align: center;
+  margin-left: 24px;
+  margin-right: 24px;
+  max-width: calc(100% - 48px);
+}
+@media(min-width:668px){
+  .intro-box { margin-left: auto; margin-right: auto; max-width: 620px; }
+}
+
+.intro-box::before, .intro-box::after {
+  content: '❦';
+  position: absolute;
+  font-size: 20px;
+  color: #8b4513;
+}
+.intro-box::before { top: 8px; left: 12px; }
+.intro-box::after { bottom: 8px; right: 12px; }
+
+/* TIPOLOGIE */
+.tipologie {
+  max-width: 640px;
+  margin: 0 auto 44px;
+  padding: 0 24px;
+}
+
+.tipologie-title {
+  font-family: 'UnifrakturMaguntia', cursive;
+  font-size: 20px;
+  color: #5c1a00;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.tipologie-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.tipo-card {
+  background: rgba(139,69,19,0.08);
+  border: 1px solid rgba(139,69,19,0.2);
+  border-radius: 4px;
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #3d1a05;
+}
+.tipo-num {
+  font-family: 'Cinzel', serif; font-weight: 700;
+  font-size: 16px;
+  color: #8b4513;
+  display: block;
+  margin-bottom: 2px;
+}
+
+/* SECTION LABEL */
+.section-header {
+  max-width: 640px;
+  margin: 0 auto 20px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.section-line { flex: 1; height: 1px; background: linear-gradient(to right, #8b4513, transparent); }
+.section-line.right { background: linear-gradient(to left, #8b4513, transparent); }
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 16px;
+  color: #5c1a00;
+  white-space: nowrap;
+}
+
+/* GROUP CARDS */
+.groups {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.group-card {
+  display: flex;
+  align-items: stretch;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1.5px solid rgba(139,69,19,0.3);
+  box-shadow: 3px 3px 0px rgba(139,69,19,0.15), inset 0 0 0 1px rgba(255,255,255,0.3);
+  animation: unfurl 0.5s ease both;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.group-card:nth-child(1){animation-delay:0.05s}
+.group-card:nth-child(2){animation-delay:0.10s}
+.group-card:nth-child(3){animation-delay:0.15s}
+.group-card:nth-child(4){animation-delay:0.20s}
+.group-card:nth-child(5){animation-delay:0.25s}
+@keyframes unfurl {
+  from { opacity:0; transform: scaleY(0.8) translateY(10px); }
+  to   { opacity:1; transform: scaleY(1) translateY(0); }
+}
+.group-card:hover { transform: translateY(-2px) rotate(0.3deg); box-shadow: 5px 5px 0px rgba(139,69,19,0.2); }
+
+.group-num {
+  min-width: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  font-weight: 700;
+  gap: 4px;
+  color: #fef3c7;
+}
+.group-num-label {
+  font-family: 'IM Fell English', serif;
+  font-size: 9px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.8;
+}
+
+.group-body {
+  flex: 1;
+  padding: 16px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  background: rgba(255,248,235,0.85);
+}
+
+.group-tipologie {
+  font-size: 12px;
+  color: #7a3a10;
+  font-style: italic;
+  line-height: 1.4;
+}
+
+.link-row { display: flex; flex-direction: column; gap: 3px; }
+.link-type {
+  font-family: 'IM Fell English', serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #a0683a;
+}
+.link-val { font-size: 14px; word-break: break-all; line-height: 1.4; }
+.link-val a { color: #1a3a7a; text-decoration: none; border-bottom: 1px dotted #1a3a7a; }
+.link-val a:hover { border-bottom-style: solid; }
+.link-val.empty { font-style: italic; color: #c4a882; font-size: 13px; }
+.link-divider { height: 1px; background: rgba(139,69,19,0.12); }
+
+/* COLORI */
+.g1 .group-num { background: linear-gradient(135deg, #7c2d12, #b45309); }
+.g2 .group-num { background: linear-gradient(135deg, #1e3a5f, #2d6a9f); }
+.g3 .group-num { background: linear-gradient(135deg, #3d1a6e, #6d3aa0); }
+.g4 .group-num { background: linear-gradient(135deg, #14532d, #1a7a3a); }
+.g5 .group-num { background: linear-gradient(135deg, #7a1a2a, #b43050); }
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 50px 24px 0;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.footer-ornament { font-size: 28px; color: #8b4513; letter-spacing: 8px; margin-bottom: 10px; }
+.footer-text {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 13px;
+  color: #7a3a10;
+  opacity: 0.7;
+}
+
+@media(max-width:500px){
+  .tipologie-grid { grid-template-columns: 1fr; }
+  .group-num { min-width: 70px; font-size: 22px; }
+}
+</style>
+<style>
+.link-val a {
+  font-family: 'IM Fell English', serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #7c2d12;
+  text-decoration: none;
+  border-bottom: 1px dotted #7c2d12;
+}
+.link-val a:hover { color: #1a0a0a; border-bottom-color: #1a0a0a; }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <span class="hero-ornament">⚔ ✦ ⚔</span>
+  <span class="hero-creature">🐉</span>
+  <h1 class="hero-title">Bestiario dei Nuovi Barbari</h1>
+  <p class="hero-sub">Hic svnt monstra — le barbarie del mondo moderno</p>
+  <span class="class-scroll">Classe 3C</span>
+</div>
+
+<div class="divider-rune">
+  <span>☩ ✦ ☩</span>
+</div>
+
+<div class="intro-box">
+  Ispirandosi ai bestiari medievali, ogni gruppo ha catalogato le creature della barbarie moderna:
+  ne ha descritto l'aspetto, l'habitat, i comportamenti, i pericoli per la società
+  e gli antidoti per combatterle.
+</div>
+
+<div class="tipologie">
+  <div class="tipologie-title">Le Creature per Gruppo</div>
+  <div class="tipologie-grid">
+    <div class="tipo-card"><span class="tipo-num">1</span> Hater · Negazionisti · Discriminatori</div>
+    <div class="tipo-card"><span class="tipo-num">2</span> Troll · Vandali urbani · Indifferenti</div>
+    <div class="tipo-card"><span class="tipo-num">3</span> Fake news · Complottisti · Incivili stradali</div>
+    <div class="tipo-card"><span class="tipo-num">4</span> Inquinatori · Violenti di genere · Analfabeti funzionali</div>
+    <div class="tipo-card"><span class="tipo-num">5</span> Cyberbullismo · Sfruttatori lavorativi · Evasori fiscali</div>
+  </div>
+</div>
+
+<div class="section-header">
+  <div class="section-line"></div>
+  <span class="section-label">I Bestiari dei Gruppi</span>
+  <div class="section-line right"></div>
+</div>
+
+<div class="groups">
+
+  <div class="group-card g1">
+    <div class="group-num">1<span class="group-num-label">Gruppo</span></div>
+    <div class="group-body">
+      <div class="group-tipologie">Hater · Negazionisti · Discriminatori</div>
+      <div class="link-row">
+        <span class="link-type">Presentazione</span>
+        <div class="link-val"><a href="https://drive.google.com/file/d/1Z1nFcflvYaEgp6RZnThkCpD688RwrSlJ/preview" target="_blank">Presentazione</a></div>
+      </div>
+      <div class="link-divider"></div>
+      <div class="link-row">
+        <span class="link-type">Lavoro</span>
+        <div class="link-val"><a href="https://drive.google.com/file/d/14ezCIf-StjYmWkejlBMCReXaFVS78EpH/preview" target="_blank">Lavoro</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group-card g2">
+    <div class="group-num">2<span class="group-num-label">Gruppo</span></div>
+    <div class="group-body">
+      <div class="group-tipologie">Troll · Vandali urbani · Indifferenti</div>
+      <div class="link-row">
+        <span class="link-type">Presentazione</span>
+        <div class="link-val"><a href="https://drive.google.com/file/d/1LaeEkzmKMS9tNG1_4VcsHuQA3vx8K_Ns/preview" target="_blank">Presentazione</a></div>
+      </div>
+      <div class="link-divider"></div>
+      <div class="link-row">
+        <span class="link-type">Lavoro</span>
+        <div class="link-val"><a href="https://drive.google.com/file/d/1LP-RHTfFKbkrSv1Oc5_4cxPKFUhJvHkX/preview" target="_blank">Lavoro</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group-card g3">
+    <div class="group-num">3<span class="group-num-label">Gruppo</span></div>
+    <div class="group-body">
+      <div class="group-tipologie">Fake news · Complottisti · Incivili stradali</div>
+      <div class="link-row">
+        <span class="link-type">Presentazione</span>
+        <div class="link-val"><a href="https://drive.google.com/file/d/1vEMg5lS8OCeHWizUWJWQXxA6ci5nzfsW/preview" target="_blank">Presentazione</a></div>
+      </div>
+      <div class="link-divider"></div>
+      <div class="link-row">
+        <span class="link-type">Lavoro</span>
+        <div class="link-val"><a href="https://drive.google.com/file/d/1GVA04CwZqKRfWO01CQbwE-42bG6ax9Xc/preview" target="_blank">Lavoro</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group-card g4">
+    <div class="group-num">4<span class="group-num-label">Gruppo</span></div>
+    <div class="group-body">
+      <div class="group-tipologie">Inquinatori · Violenti di genere · Analfabeti funzionali</div>
+      <div class="link-row">
+        <span class="link-type">Presentazione</span>
+        <div class="link-val"><a href="https://drive.google.com/file/d/154Slsd9iqnc4coKk-S-Z1UD6qSYFUNXF/preview" target="_blank">Presentazione</a></div>
+      </div>
+      <div class="link-divider"></div>
+      <div class="link-row">
+        <span class="link-type">Lavoro</span>
+        <div class="link-val"><a href="https://drive.google.com/file/d/1D4TNr4RqEj5KqlvthEvF7-lwn8LSZaPf/preview" target="_blank">Lavoro</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="group-card g5">
+    <div class="group-num">5<span class="group-num-label">Gruppo</span></div>
+    <div class="group-body">
+      <div class="group-tipologie">Cyberbullismo · Sfruttatori lavorativi · Evasori fiscali</div>
+      <div class="link-row">
+        <span class="link-type">Presentazione</span>
+        <div class="link-val">link non ancora inserito</div>
+      </div>
+      <div class="link-divider"></div>
+      <div class="link-row">
+        <span class="link-type">Lavoro</span>
+        <div class="link-val"><a href="https://drive.google.com/file/d/1zghgs0UTtFCBZy7GwzkYVoeeu_qm2-e8/preview" target="_blank">Lavoro</a></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <div class="footer-ornament">⚔ ✦ ⚔</div>
+  <div class="footer-text">Recognoscere barbariem primum remedium est</div>
+</div>
+
+
+</body>
+</html>
